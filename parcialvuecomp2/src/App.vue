@@ -1,14 +1,24 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <nav class="nav" >
+      <a class="nav-link active" aria-current="page" href="#Home">Agregar libros</a>
+      <a class="nav-link" aria-current="page" href="#Evidencias">edit registro</a>
+    </nav>
+    <br>
+    <br>
+
+    <img alt="targarien logo" width="200" src="https://www.freepngimg.com/thumb/tv_shows/33666-5-house-targaryen-clipart.png"/>
+    <Agregarlibro/>
   </div>
 </template>
 
 <script>
+import Agregarlibro from "./components/Agregarlibro.vue"
 
 export default {
   name: 'App',
   components: {
+    Agregarlibro
   }
 }
 </script>
