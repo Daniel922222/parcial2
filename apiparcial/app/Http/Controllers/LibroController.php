@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Libros;
 
 use Illuminate\Http\Request;
-use App\Apiparcial;
 
-class Libro_revistaController extends Controller
+class LibroController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,10 @@ class Libro_revistaController extends Controller
      */
     public function index()
     {
-        //
+       
     
-    
-
+        $libros=Libros::all();
+        return $libros;
     }
 
     /**
@@ -28,6 +28,12 @@ class Libro_revistaController extends Controller
     public function create()
     {
         //
+        $libros= new Libros();
+        $libros->libro=$request->libro;
+        $libros->revista=$request->revista;
+        $libros->categoria=$request->categoria;
+        $libros->autor=$request->autor;
+        $libros->cantida=$request->cantidad;
     }
 
     /**
@@ -38,19 +44,17 @@ class Libro_revistaController extends Controller
      */
     public function store(Request $request)
     {
-      
-        $category = $request->isMethod('put') ? Category::FindOrFail($request->id) : new Category;
-        $category->id = $request->input('id');
-        $category->libro = $request->input('libto');
-        $category->revista = $request->input('revista');
-        $category->categoria= $request->input('categoria');
-        $category->autor = $request->input('autor');
-        $category->cantida = $request->input('cantidad');
+        //
+        $libros=new Libros();
+        $libros->libro=$request->libro;
+        $libros->revista=$request->revista;
+        $libros->categoria=$request->categoria;
+        $libros->autor=$request->autor;
+        $libros->cantidad=$request->cantidad;
+
+        $libros->save();
 
 
-        if($category->save()){
-            return new CategoryResource($category);
-        }
     }
 
     /**
@@ -62,6 +66,11 @@ class Libro_revistaController extends Controller
     public function show($id)
     {
         //
+        $libros = Libros::findOrFail($id);
+  
+        return new LibrosResource($libros);
+        
+        //return Libros::finOrFail($id)->get();
     }
 
     /**
@@ -82,9 +91,19 @@ class Libro_revistaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $libros=Libros::findOrfail($request->id);
+        $libros->id=$request->id;
+        $libros->libro=$request->libro;
+        $libros->revista=$request->revista;
+        $libros->categoria=$request->categoria;
+        $libros->autor=$request->autor;
+        $libros->cantidad=$request->cantidad;
+      
+        $libros->save();
+         return $libros;
+
     }
 
     /**
@@ -96,5 +115,7 @@ class Libro_revistaController extends Controller
     public function destroy($id)
     {
         //
+        $libros=Libros::findOrFail($id);
+        $libros->delete();
     }
 }

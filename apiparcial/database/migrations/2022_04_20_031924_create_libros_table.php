@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('table_libros_revistas', function (Blueprint $table) {
+        Schema::create('libros', function (Blueprint $table) {
             $table->id();
             $table->string('libro');
             $table->string('revista');
             $table->string('categoria');
             $table->string('autor');
             $table->integer('cantidad');
-
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_libros_revistas');
+        Schema::dropIfExists('libros');
     }
 };
