@@ -1,27 +1,12 @@
 <template>
   <div id="app">
-    <nav class="nav" >
-      <a class="nav-link active" aria-current="page" href="#Home">Agregar libros</a>
-      <a class="nav-link" aria-current="page" href="#Evidencias">edit registro</a>
-    </nav>
-    <br>
-    <br>
-
-    <img alt="targarien logo" width="200" src="https://www.freepngimg.com/thumb/tv_shows/33666-5-house-targaryen-clipart.png"/>
-    <Agregarlibro/>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view/>
   </div>
 </template>
-
-<script>
-import Agregarlibro from "./components/Agregarlibro.vue"
-
-export default {
-  name: 'App',
-  components: {
-    Agregarlibro
-  }
-}
-</script>
 
 <style>
 #app {
@@ -30,6 +15,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
